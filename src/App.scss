@@ -1,0 +1,12 @@
+main {
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  //background-color: black; // workaround to prevent background-image flickering
+
+  section {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+}
+

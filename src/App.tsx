@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Home from './components/home/Home';
+import Technology from './components/technology/Technology';
+import Destination from './components/destination/Destination';
+import Crew from './components/crew/Crew';
+import Navbar from './components/navbar/Navbar';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+type ContainerProps = {
+	children: JSX.Element;
+	activeClass: string;
+};
+
+const Container = ({ children, activeClass }: ContainerProps) => (
+	<main className={activeClass}>
+		<Navbar />
+		{children}
+	</main>
+);
+
+const App = () => (
+	<Router>
+		<Routes>
+			<Route
+				path="/"
+				element={
+					<Container activeClass="home">
+						<Home />
+					</Container>
+				}
+			/>
+			<Route
+				path="/destination"
+				element={
+					<Container activeClass="destination">
+						<Destination />
+					</Container>
+				}
+			/>
+			<Route
+				path="/crew"
+				element={
+					<Container activeClass="crew">
+						<Crew />
+					</Container>
+				}
+			/>
+			<Route
+				path="/technology"
+				element={
+					<Container activeClass="technology">
+						<Technology />
+					</Container>
+				}
+			/>
+		</Routes>
+	</Router>
+);
 
 export default App;
