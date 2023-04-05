@@ -4,7 +4,7 @@ import Technology from './components/technology/Technology';
 import Destination from './components/destination/Destination';
 import Crew from './components/crew/Crew';
 import Navbar from './components/navbar/Navbar';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const routes = [
@@ -39,13 +39,14 @@ const Container = ({
 }) => (
 	<motion.main
 		className={activeClass}
-		initial={{ x: 300, opacity: 0 }}
-		animate={{ x: 0, opacity: 1 }}
-		exit={{ x: 300, opacity: 0 }}
+		initial={{ x: '100%' }}
+		animate={{ x: 0 }}
+		exit={{ x: '-100%' }}
 		transition={{
-			type: 'spring',
-			stiffness: 260,
-			damping: 20,
+			// type: 'tween',
+			// stiffness: 260,
+			// damping: 20,
+			duration: 1,
 		}}
 	>
 		<Navbar />
@@ -54,24 +55,22 @@ const Container = ({
 );
 
 const App = () => {
+	const location = useLocation();
+	const pageKey = location.pathname;
 	return (
-		<Router>
-			<AnimatePresence mode="wait">
-				<Routes>
-					{routes.map(({ path, activeClass, component }) => (
-						<Route
-							key={path}
-							path={path}
-							element={
-								<Container key={path} activeClass={activeClass}>
-									{component}
-								</Container>
-							}
-						/>
-					))}
-				</Routes>
-			</AnimatePresence>
-		</Router>
+		<AnimatePresence initial={false} mode="popLayout">
+			<Routes key={pageKey}>
+				{routes.map(({ path, activeClass, component }) => (
+					<Route
+						key={pageKey}
+						path={path}
+						element={
+							<Container activeClass={activeClass}>{component}</Container>
+						}
+					/>
+				))}
+			</Routes>
+		</AnimatePresence>
 	);
 };
 
