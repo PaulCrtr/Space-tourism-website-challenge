@@ -5,6 +5,7 @@ import Destination from './components/destination/Destination';
 import Crew from './components/crew/Crew';
 import Navbar from './components/navbar/Navbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const routes = [
 	{
@@ -36,24 +37,42 @@ const Container = ({
 	children: JSX.Element;
 	activeClass: string;
 }) => (
-	<main className={activeClass}>
+	<motion.main
+		className={activeClass}
+		initial={{ x: 300, opacity: 0 }}
+		animate={{ x: 0, opacity: 1 }}
+		exit={{ x: 300, opacity: 0 }}
+		transition={{
+			type: 'spring',
+			stiffness: 260,
+			damping: 20,
+		}}
+	>
 		<Navbar />
 		{children}
-	</main>
+	</motion.main>
 );
 
-const App = () => (
-	<Router>
-		<Routes>
-			{routes.map(({ path, activeClass, component }) => (
-				<Route
-					key={path}
-					path={path}
-					element={<Container activeClass={activeClass}>{component}</Container>}
-				/>
-			))}
-		</Routes>
-	</Router>
-);
+const App = () => {
+	return (
+		<Router>
+			<AnimatePresence mode="wait">
+				<Routes>
+					{routes.map(({ path, activeClass, component }) => (
+						<Route
+							key={path}
+							path={path}
+							element={
+								<Container key={path} activeClass={activeClass}>
+									{component}
+								</Container>
+							}
+						/>
+					))}
+				</Routes>
+			</AnimatePresence>
+		</Router>
+	);
+};
 
 export default App;
