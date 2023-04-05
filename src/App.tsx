@@ -6,12 +6,36 @@ import Crew from './components/crew/Crew';
 import Navbar from './components/navbar/Navbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-type ContainerProps = {
+const routes = [
+	{
+		component: <Home />,
+		path: '/',
+		activeClass: 'home',
+	},
+	{
+		component: <Destination />,
+		path: '/destination',
+		activeClass: 'destination',
+	},
+	{
+		component: <Crew />,
+		path: '/crew',
+		activeClass: 'crew',
+	},
+	{
+		component: <Technology />,
+		path: '/technology',
+		activeClass: 'technology',
+	},
+];
+
+const Container = ({
+	children,
+	activeClass,
+}: {
 	children: JSX.Element;
 	activeClass: string;
-};
-
-const Container = ({ children, activeClass }: ContainerProps) => (
+}) => (
 	<main className={activeClass}>
 		<Navbar />
 		{children}
@@ -21,38 +45,13 @@ const Container = ({ children, activeClass }: ContainerProps) => (
 const App = () => (
 	<Router>
 		<Routes>
-			<Route
-				path="/"
-				element={
-					<Container activeClass="home">
-						<Home />
-					</Container>
-				}
-			/>
-			<Route
-				path="/destination"
-				element={
-					<Container activeClass="destination">
-						<Destination />
-					</Container>
-				}
-			/>
-			<Route
-				path="/crew"
-				element={
-					<Container activeClass="crew">
-						<Crew />
-					</Container>
-				}
-			/>
-			<Route
-				path="/technology"
-				element={
-					<Container activeClass="technology">
-						<Technology />
-					</Container>
-				}
-			/>
+			{routes.map(({ path, activeClass, component }) => (
+				<Route
+					key={path}
+					path={path}
+					element={<Container activeClass={activeClass}>{component}</Container>}
+				/>
+			))}
 		</Routes>
 	</Router>
 );
