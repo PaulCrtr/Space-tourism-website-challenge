@@ -44,7 +44,7 @@
     }
   },
   "rules": {
-    "linebreak-style": "off",
+    "linebreak-style": ["warn", "unix"],
     // Configure prettier
     "prettier/prettier": [
       "error",

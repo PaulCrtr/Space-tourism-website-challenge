@@ -1,5 +1,5 @@
 import './Destination.scss';
 
-const Destination = () => <section>DESTINATION</section>;
+const Destination = () => <>DESTINATION</>;
 
 export default Destination;

@@ -1,5 +1,5 @@
 import './Crew.scss';
 
-const Crew = () => <section>CREW</section>;
+const Crew = () => <>CREW</>;
 
 export default Crew;

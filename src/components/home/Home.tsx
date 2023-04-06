@@ -1,7 +1,7 @@
 import './Home.scss';
 
 const Home = () => (
-	<section>
+	<>
 		<div className="text-intro">
 			<h5>SO, YOU WANT TO TRAVEL TO</h5>
 			<h1>SPACE</h1>
@@ -15,7 +15,7 @@ const Home = () => (
 		<div className="explore-button">
 			<div>EXPLORE</div>
 		</div>
-	</section>
+	</>
 );
 
 export default Home;

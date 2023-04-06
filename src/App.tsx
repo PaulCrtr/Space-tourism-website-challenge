@@ -37,32 +37,28 @@ const Container = ({
 	children: JSX.Element;
 	activeClass: string;
 }) => (
-	<motion.main
-		className={activeClass}
-		initial={{ x: '100%' }}
-		animate={{ x: 0 }}
-		exit={{ x: '-100%' }}
-		transition={{
-			// type: 'tween',
-			// stiffness: 260,
-			// damping: 20,
-			duration: 1,
-		}}
-	>
+	<main className={activeClass}>
 		<Navbar />
-		{children}
-	</motion.main>
+		<motion.section
+			initial={{ x: -70, opacity: 0 }}
+			animate={{ x: 0, opacity: 1 }}
+			transition={{
+				type: 'spring',
+				duration: 0.7,
+			}}
+		>
+			{children}
+		</motion.section>
+	</main>
 );
 
 const App = () => {
-	const location = useLocation();
-	const pageKey = location.pathname;
 	return (
-		<AnimatePresence initial={false} mode="popLayout">
-			<Routes key={pageKey}>
+		<AnimatePresence initial={false} mode="wait">
+			<Routes key={useLocation().pathname}>
 				{routes.map(({ path, activeClass, component }) => (
 					<Route
-						key={pageKey}
+						key={path}
 						path={path}
 						element={
 							<Container activeClass={activeClass}>{component}</Container>

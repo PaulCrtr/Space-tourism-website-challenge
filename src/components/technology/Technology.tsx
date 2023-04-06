@@ -1,5 +1,5 @@
 import './Technology.scss';
 
-const Technology = () => <div>TECHNOLOGY</div>;
+const Technology = () => <>TECHNOLOGY</>;
 
 export default Technology;
