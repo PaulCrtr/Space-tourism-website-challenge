@@ -1,6 +1,7 @@
 @import "src/style-variables.scss";
 
 $animationDuration: 250ms;
+$sidebarWidth: 254px;
 
 nav {
   .head, .icon-close-container {
@@ -37,9 +38,9 @@ nav {
     transition: right $animationDuration ease-in-out;
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -$sidebarWidth;
     height: 100%;
-    width: 254px;
+    width: $sidebarWidth;
     display: flex;
     flex-direction: column;
     backdrop-filter: blur(40px);

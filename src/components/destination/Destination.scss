@@ -1,3 +1,7 @@
 .destination {
-  background-image: url("../../assets/destination/background-destination-mobile.jpg");
+  background-image:
+          url("../../assets/destination/background-destination-mobile.jpg"), // stack backgrounds to prevent flickering
+          url("../../assets/technology/background-technology-mobile.jpg"),
+          url("../../assets/home/background-home-mobile.jpg"),
+          url("../../assets/crew/background-crew-mobile.jpg");
 }

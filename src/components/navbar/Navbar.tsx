@@ -3,7 +3,7 @@ import './Navbar.scss';
 import Logo from '../../assets/shared/logo.svg';
 import IconHamburger from '../../assets/shared/icon-hamburger.svg';
 import IconClose from '../../assets/shared/icon-close.svg';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
 	const [open, setOpen] = useState('');
@@ -30,32 +30,32 @@ const Navbar = () => {
 				</div>
 				<ul>
 					<li>
-						<Link to="/">
+						<NavLink to="/">
 							<div className="navbar-link-text">
 								<div>00</div>HOME
 							</div>
-						</Link>
+						</NavLink>
 					</li>
 					<li>
-						<Link to="/destination">
+						<NavLink to="/destination">
 							<div className="navbar-link-text">
 								<div>01</div>DESTINATION
 							</div>
-						</Link>
+						</NavLink>
 					</li>
 					<li>
-						<Link to="/crew">
+						<NavLink to="/crew">
 							<div className="navbar-link-text">
 								<div>02</div>CREW
 							</div>
-						</Link>
+						</NavLink>
 					</li>
 					<li>
-						<Link to="/technology">
+						<NavLink to="/technology">
 							<div className="navbar-link-text">
 								<div>03</div>TECHNOLOGY
 							</div>
-						</Link>
+						</NavLink>
 					</li>
 				</ul>
 			</div>

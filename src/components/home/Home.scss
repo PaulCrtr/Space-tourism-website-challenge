@@ -1,7 +1,11 @@
 @import "src/style-variables.scss";
 
 .home {
-  background-image: url("../../assets/home/background-home-mobile.jpg");
+  background-image:
+          url("../../assets/home/background-home-mobile.jpg"),  // stack backgrounds to prevent flickering
+          url("../../assets/destination/background-destination-mobile.jpg"),
+          url("../../assets/crew/background-crew-mobile.jpg"),
+          url("../../assets/technology/background-technology-mobile.jpg");
 
   section {
     display: flex;
