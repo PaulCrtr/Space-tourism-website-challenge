@@ -37,7 +37,16 @@ const Container = ({
 	children: JSX.Element;
 	activeClass: string;
 }) => (
-	<main className={activeClass}>
+	<motion.main
+		className={activeClass}
+		// initial={{ opacity: 0 }}
+		// animate={{ opacity: 1 }}
+		// exit={{ opacity: 0 }}
+		// transition={{
+		// 	type: 'spring',
+		// 	duration: 1,
+		// }}
+	>
 		<Navbar />
 		<motion.section
 		// initial={{ x: -70, opacity: 0 }}
@@ -49,12 +58,14 @@ const Container = ({
 		>
 			{children}
 		</motion.section>
-	</main>
+	</motion.main>
 );
 
 const App = () => {
 	return (
-		<AnimatePresence initial={false} mode="wait">
+		//todo: enlever le flash blanc au refresh (et le saut vers le bas, peut être lié aux logos svg qui chargent)
+		//todo: faire marcher avec mode="popLayout"
+		<AnimatePresence initial={false} mode="popLayout">
 			<Routes key={useLocation().pathname}>
 				{routes.map(({ path, activeClass, component }) => (
 					<Route
